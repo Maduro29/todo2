@@ -1,10 +1,12 @@
 import React from "react";
 import Header from "./Header";
 import TodoItem from "./TodoItem";
+import Footer from "./Footer";
 
 const TodoList = (props) => {
     const {title, items} = props;
     console.log(title, items);
+    let left = items.length;
 
     return (
         <div className="todolist">
@@ -13,6 +15,7 @@ const TodoList = (props) => {
                 {items.map(item =>
                     <TodoItem item={item}/>
                 )}
+            <Footer left={left}/>
             </ul>
         </div>
     )
