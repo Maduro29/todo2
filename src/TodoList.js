@@ -5,7 +5,6 @@ import Footer from "./Footer";
 
 const TodoList = (props) => {
     const {title, items} = props;
-    console.log(title, items);
     let left = items.length;
 
     return (
