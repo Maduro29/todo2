@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import TodoList from './TodoList';
 
 const ITEMS_INITIAL_STATE = [
@@ -22,13 +22,24 @@ const ITEMS_INITIAL_STATE = [
 
 function App() {
   const title = "Things to do";
-  const [items] = useState(ITEMS_INITIAL_STATE);
-  console.log(useState(ITEMS_INITIAL_STATE));
+  const [items, updateItems] = useState(ITEMS_INITIAL_STATE);
+  const addNewItem = useCallback(text => {
+    updateItems(items => {
+      const nextId = items.length + 1;
+      const newItem = {
+        id: nextId,
+        text: text,
+        completed: false
+      };
+
+      return [...items, newItem];
+    })
+  }, [updateItems])
 
   return (
     <div className="container">
       <div className="row">
-        <TodoList title={title} items={items}/>
+        <TodoList title={title} items={items} addNewItem={addNewItem}/>
       </div>
     </div>
   );
