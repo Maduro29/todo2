@@ -1,3 +1,5 @@
+import update from "immutability-helper";
+
 export function getAll() {
     return [
         {
@@ -17,6 +19,20 @@ export function getAll() {
         }
       ]
 };
+
+export function getItemById(itemId) {
+    return getAll().find(item => item.id === itemId);
+}
+
+export function updateStatus(items, itemId, completed) {
+    let index = items.find(item => item.id === itemId);
+
+    return update(items, {
+        [index]: {
+            completed: {$set: completed}
+        }
+    });
+}
 
 function getNextID() {
     return getAll().length + 1;

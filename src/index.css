@@ -33,3 +33,9 @@ body {
 .add-todo {
   margin: 10px 0px;
 }
+
+.alert {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  padding: 10px;
+}
