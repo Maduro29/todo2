@@ -1,18 +1,20 @@
 import React from "react";
+import CheckBox from "./CheckBox";
 
 const TodoItem = (props) => {
     const item = props.data;
+    const {data, changeStatus} = props;
+    const handleChange = (checked) => changeStatus(data.id, checked);
 
     return (
-        <li className="list-group-item">
-            <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id={`todo-item-check-${item.id}`} />
-                <label className="form-check-label" htmlFor={`todo-item-check-${item.id}`}>
-                    {item.text}
+        <li className="ui-state-default">
+            <div className="checkbox">
+                <label>
+                    <CheckBox checked={data.completed} onChange={handleChange}/> {data.text}
                 </label>
             </div>
         </li>
-    )
+    );
 }
 
 export default TodoItem;

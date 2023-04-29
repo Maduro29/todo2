@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import { applyFilter } from "../services/filter";
 
 const TodoList = (props) => {
-    const { title, items, addNew, filter, changeFilter } = props;
+    const { title, items, addNew, filter, changeFilter, changeStatus } = props;
     const left = items.length;
     const filteredList = applyFilter(items, filter);
 
@@ -16,7 +16,7 @@ const TodoList = (props) => {
                 {filteredList.length === 0 ? (
                 <div className="alert alert-secondary">No items in the list.</div>
                 ) : (
-                    filteredList.map(item => <TodoItem data={item} />)
+                    filteredList.map(item => <TodoItem data={item} changeStatus={changeStatus} />)
                 )}
             </ul>
             <Footer {...{left, filter, changeFilter }} />
