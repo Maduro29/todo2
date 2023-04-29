@@ -3,10 +3,10 @@ import {KEY_RETURN} from "keycode-js";
 
 function InputBox(props) {
     const [value, setValue] = useState(' ');
-    const {addNewItem} = props;
+    const {addNew} = props;
     const handleKeyUpEvent = useCallback(e => {
         if (e.keyCode === KEY_RETURN) {
-            addNewItem(e.target.value);
+            addNew(e.target.value);
             console.log('KEY_RETURN pressed');
         }
     }, []);

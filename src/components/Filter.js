@@ -1,10 +1,7 @@
 import React from "react";
+import { getOptions } from "../services/filter";
 
-const options = {
-    all: 'All',
-    completed: 'Completed',
-    active: 'Active'
-};
+const options = getOptions();
 
 const Filter = (props) => {
     const {filter, changeFilter} = props;
