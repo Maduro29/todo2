@@ -2,44 +2,49 @@ import './App.css';
 import React, {useCallback, useState} from 'react';
 import TodoList from './TodoList';
 
-const ITEMS_INITIAL_STATE = [
+const ITEMS_DEFAULT = [
   {
     id: 1,
-    text: 'Take out the trash',
+    text: 'Learn Javascript',
     completed: false
   },
   {
     id: 2,
-    text: 'Join viewing party',
+    text: 'Learn React',
     completed: false
   },
   {
     id: 3,
-    text: 'Play basketball',
+    text: 'Build a React App',
     completed: false
   }
 ];
+const FILTER_DEFAULT = 'active';
 
 function App() {
-  const title = "Things to do";
-  const [items, updateItems] = useState(ITEMS_INITIAL_STATE);
-  const addNewItem = useCallback(text => {
-    updateItems(items => {
-      const nextId = items.length + 1;
-      const newItem = {
-        id: nextId,
-        text: text,
-        completed: false
-      };
+  const title = 'Things to do';
+  const [items, updateItems] = useState(ITEMS_DEFAULT);
+  const [filter, setFilter] = useState(FILTER_DEFAULT);
+  const addNewItem = useCallback(
+    text => {
+      updateItems(items => {
+        const nextId = items.length + 1;
+        const newItem = {
+          id: nextId,
+          text: text
+        };
 
-      return [...items, newItem];
-    })
-  }, [updateItems])
+        return [...items, newItem];
+      });
+    },
+    [updateItems]
+  );
+  const changeFilter = useCallback(value => setFilter(value), [setFilter]);
 
   return (
     <div className="container">
       <div className="row">
-        <TodoList title={title} items={items} addNewItem={addNewItem}/>
+        <TodoList title={title} items={items} filter={filter} addNewItem={addNewItem} changeFilter={changeFilter} />
       </div>
     </div>
   );

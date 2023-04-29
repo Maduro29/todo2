@@ -1,10 +1,19 @@
 import React from "react";
+import Filter from "./Filter";
 
 const Footer = (props) => {
-    const left = props.left;
+    const {left, filter, changeFilter} = props;
 
     return (
-        <h2>Things left: {left}</h2>
+        <div className="todo-footer clearfix">
+            <div className="float-start">
+                <span className="count-todos">{left}</span>
+                {' items left'}
+            </div>
+            <div className="float-end">
+                <Filter filter={filter} changeFilter={changeFilter} />
+            </div>
+        </div>
     )
 }
 

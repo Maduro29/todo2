@@ -1,7 +1,7 @@
 import React from "react";
 
 const TodoItem = (props) => {
-    const item = props.item;
+    const item = props.data;
 
     return (
         <li className="list-group-item">
@@ -15,4 +15,4 @@ const TodoItem = (props) => {
     )
 }
 
-export default TodoItem
+export default TodoItem;
