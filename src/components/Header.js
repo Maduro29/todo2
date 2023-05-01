@@ -1,5 +1,5 @@
 import React from "react";
-import InputBox from "./InputBox";
+import InputWrapper from "./InputWrapper";
 
 const Header = (props) => {
     // const {title, addNew} = props;
@@ -7,7 +7,7 @@ const Header = (props) => {
     return (
         <header>
             <h1>Things To Do</h1>
-            <InputBox addNew={props.addNew}/>
+            <InputWrapper {...props} />
         </header>
     )
 }

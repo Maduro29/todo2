@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from 'react';
 import TodoList from './components/TodoList';
+import StateProvider from './components/StateProvider';
 
 class App extends Component {
   render() {
@@ -8,7 +9,9 @@ class App extends Component {
     return (
       <div className='container'>
         <div className='row'>
-          <TodoList />
+          <StateProvider>
+            <TodoList />
+          </StateProvider>
         </div>
       </div>
     )
