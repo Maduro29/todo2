@@ -6,7 +6,7 @@ const Footer = (props) => {
     const {left, filter, changeFilter } = props;
 
     return (
-        <div className="todo-footer clearfix">
+        <footer className="clearfix">
             <div className="pull-left buttons">
                 <ButtonWrapper {...{props}} />
             </div>
@@ -15,9 +15,9 @@ const Footer = (props) => {
                 {' items left'}
             </div>
             <div className="float-end">
-                <Filter filter={filter} changeFilter={changeFilter} />
+                <Filter {...{filter, changeFilter}} />
             </div>
-        </div>
+        </footer>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from "react";
 import {KEY_RETURN} from "keycode-js";
 
-function InputBox(props) {
+const InputBox = (props) => {
     const [value, setValue] = useState(' ');
     const {addNew} = props;
     const handleKeyUpEvent = useCallback(e => {
@@ -16,12 +16,13 @@ function InputBox(props) {
 
     return (
         <input 
+            autoFocus
             type="text"
             className="form-control add-todo"
             value={value}
             onKeyUp={handleKeyUpEvent}
             onChange={handleChangeEvent}
-            placeholder="Add new"
+            placeholder="Add new..."
         />
     )
 }

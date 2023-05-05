@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FILTER_ALL} from './../services/filter';
-import { MODE_CREATE } from '../services/mode';
+import { MODE_CREATE, MODE_NONE } from '../services/mode';
 import {objectWithOnly, wrapChildrenWith} from '../util/common';
 import {getAll, addToList, updateStatus} from './../services/todo';
 
@@ -10,33 +10,44 @@ class StateProvider extends Component {
         this.state = {
             mode: MODE_CREATE,
             filter: FILTER_ALL,
-            items: getAll()
+            list: getAll(),
+            query: ""
         }
     }
 
     render() {
         let children = wrapChildrenWith(this.props.children, {
             data: this.state,
-            actions: objectWithOnly(this, ['addNew', 'changeFilter', 'changeStatus'])
+            actions: objectWithOnly(this, ['addNew', 'changeFilter', 'changeStatus', 'changeMode', 'setSearchQuery'])
         });
 
         return <div>{children}</div>;
     }
 
     addNew(text) {
-        let updatedList = addToList(this.state.items, {text, completed: false});
+        let updatedList = addToList(this.state.list, {text, completed: false});
 
-        this.setState({items: updatedList})
+        this.setState({list: updatedList})
     }
 
     changeFilter(filter) {
-        this.setState({filter});
+        this.setState({filter: filter});
     }
 
     changeStatus(itemId, completed) {
-        const updatedList = updateStatus(this.state.items, itemId, completed);
+        const updatedList = updateStatus(this.state.list, itemId, completed);
 
-        this.setState({items: updatedList});
+        this.setState({list: updatedList});
+    }
+
+    changeMode(mode = MODE_NONE) {
+        this.setState({
+            mode: mode
+        })
+    }
+    
+    setSearchQuery(text) {
+        this.setState({query: text || " "});
     }
 }
 

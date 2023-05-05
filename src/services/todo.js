@@ -43,5 +43,7 @@ export function addToList(list, data) {
         id: getNextID()
     }, data);
 
+    console.log(item, list);
+
     return list.concat([item]);
 }
